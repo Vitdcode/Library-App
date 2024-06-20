@@ -30,11 +30,6 @@ body {
     grid-template-columns: repeat(3, minmax(480px, 509px))  ;
     grid-template-rows: 300px 1fr;
     color: rgb(17, 24, 39);
-   
-
-  
-  
-    
 }
 
 
@@ -144,6 +139,22 @@ input {
     background-color: rgb(17, 24, 39);
     text-align: center;
 }
+
+.book-container{
+    display: grid;
+    gap: 60px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-inline: 30px;
+   
+    border: 2px solid #000000;
+    
+}
+
+/* .book {
+    display: grid;
+}
+ */
+
 
 /* .input-field-and-button-container>span:nth-child(n+3) {
     font-size: 2rem;

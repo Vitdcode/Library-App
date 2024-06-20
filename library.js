@@ -1,37 +1,29 @@
-const inputFieldTitle = document.querySelector('.input-field-title');
-const inputFieldAuthor = document.querySelector('.input-field-author');
+const inputFieldTitle = document.querySelector('#input-field-title');
+const inputFieldAuthor = document.querySelector('#input-field-author');
 const inputFieldNumPages = document.querySelector('.input-field-number-pages');
-const AddNewBookButton = document.querySelector('.add-book');
+const AddNewBookButton = document.querySelector('.add-book-button');
 const mainContainer = document.querySelector('.main-container');
+const bookContainer = document.querySelector('.book-container');
 
 
+let myLibrary = [];
 
-function addBookToLibrary(array) {
-    array.forEach(book => {
-        const bookDiv = document.createElement('div');
-        const book1 = document.createElement('p');
-        book1.textContent = `Title: ${book.title} Author: ${book.author} Number of Pages: ${book.pages}`;
-        bookDiv.appendChild(book1);
-        mainContainer.appendChild(bookDiv);
+    AddNewBookButton.addEventListener('click', () => {
+
+        /* myLibrary.push( new Book(`${inputFieldTitle.value} ${inputFieldAuthor.value} ${inputFieldNumPages.value}`)) */
+        const title = inputFieldTitle.value;
+        const author = inputFieldAuthor.value;
+        const pages = inputFieldNumPages.value;
+
+        myLibrary.push(new Book(title, author, pages));
+        addBookToLibrary(myLibrary);
+
+        inputFieldTitle.value = '';
+        inputFieldAuthor.value = '';
+        inputFieldNumPages.value = '';
+        myLibrary = [];
+
     });
-}
-
-
-const myLibrary = [
-    {
-        title: 'The Hobbit',
-        author: 'JRR Tolkien',
-        pages: 295
-    },
-    {
-        title: 'The Coder part 3',
-        author: 'Great Artist',
-        pages: 300
-    }
-
-];
-
-console.log(addBookToLibrary(myLibrary));
 
 
 function Book(title, author, pageNum) {
@@ -48,11 +40,31 @@ function Book(title, author, pageNum) {
 }
 
 
+function addBookToLibrary(array) {
+    
+    array.forEach(book => {
+        
+        const bookDiv = document.createElement('div');
+        bookDiv.classList.add('book');
+        const title = document.createElement('p');
+        const author = document.createElement('p');
+        const pages = document.createElement('p');
+       
+        title.textContent = `Title: ${book.title}`;
+        author.textContent = `Author: ${book.author}`;
+        pages.textContent = `Number of Pages: ${book.pages}`
+
+        bookDiv.appendChild(title);
+        bookDiv.appendChild(author);
+        bookDiv.appendChild(pages);
+
+        bookContainer.appendChild(bookDiv);
+
+       
+        })
+
+    }
+
+  
 
 
-
-
-
-  /* const theHobbit = new Book(title, author, numberPages); */
-/* const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295'); */
-/* let div = document.createElement('div'); */
