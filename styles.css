@@ -21,7 +21,6 @@ body {
 
 .input-field-and-button-container {
     display: grid;
-    position: relative;
     justify-content: center;
     font-size: 3rem;
     font-weight: bold;
@@ -33,29 +32,22 @@ body {
 }
 
 
-.title-container {
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    border-radius: 40px;
-}
+
 
 .title-container:hover img, 
 .title-container:hover span,
 .author-container:hover img,
 .author-container:hover span,
 .pages-container:hover img,
-.pages-container:hover span {
+.pages-container:hover span,
+.book:hover img,
+.book:hover p {
     transform: scale(1.05);
 }
 
 .title-container span, 
 .author-container span, 
-.pages-container span 
- {
+.pages-container span {
     transition: transform 0.3s ease-in-out;
     text-shadow: 0px 2px 2px #000000;
   background-color: rgba(185, 185, 185, 0.2);
@@ -66,7 +58,8 @@ body {
 
 .title-container img, 
 .author-container img,
-.pages-container img {
+.pages-container img,
+.book img {
     position: absolute;
     border-radius: 40px;
     border: 3px solid rgba(0, 0, 0, 0.9);
@@ -78,6 +71,17 @@ body {
     filter: blur(2px); 
     z-index: -1;
     transition: transform 0.3s ease-in-out;
+}
+
+
+.title-container {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 40px;
 }
 
 .author-container {
@@ -144,7 +148,7 @@ input {
 .book-container {
     display: grid;
     gap: 60px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(480px, 509px));
     justify-content: center;
     margin-inline: 30px;
     margin-top: 100px;
@@ -152,15 +156,28 @@ input {
 }
 
 .book {
+    position: relative;
+    cursor: pointer;
     display: grid;
-    justify-content: center;
     border-radius: 40px;
-    border: 3px solid rgba(0, 0, 0, 0.9);
-    background-color: white;
-    font-size: 3rem;
+    min-height: 300px;
+    font-size: 2rem;
     color: rgb(17, 24, 39);
     
 }
+
+.book p {
+    height: 50px;
+    margin-top: 30px;
+    margin-inline: 30px;
+    transition: transform 0.3s ease-in-out;
+    text-shadow: 0px 2px 2px #000000;
+    background-color: rgba(185, 185, 185, 0.2);
+    border-radius: 10px;
+    color: #dfdcdc;
+    
+}
+
 
 
 

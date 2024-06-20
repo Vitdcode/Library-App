@@ -49,14 +49,20 @@ function addBookToLibrary(array) {
         const title = document.createElement('p');
         const author = document.createElement('p');
         const pages = document.createElement('p');
-       
+        const backgroundImg = document.createElement('img');
+        backgroundImg.src = "../Library-App/images/newBook.jpg"; 
+        backgroundImg.alt = "Image from Alabaster Co on Unsplash";
+  
+
         title.textContent = `Title: ${book.title}`;
         author.textContent = `Author: ${book.author}`;
-        pages.textContent = `Number of Pages: ${book.pageNum}`
+        pages.textContent = `Number of Pages: ${book.pageNum}`;
 
+        bookDiv.appendChild(backgroundImg);
         bookDiv.appendChild(title);
         bookDiv.appendChild(author);
         bookDiv.appendChild(pages);
+        
 
         bookContainer.appendChild(bookDiv);
 
