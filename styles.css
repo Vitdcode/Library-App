@@ -54,7 +54,8 @@ body {
 
 .title-container span, 
 .author-container span, 
-.pages-container span {
+.pages-container span 
+ {
     transition: transform 0.3s ease-in-out;
     text-shadow: 0px 2px 2px #000000;
   background-color: rgba(185, 185, 185, 0.2);
@@ -140,22 +141,26 @@ input {
     text-align: center;
 }
 
-.book-container{
+.book-container {
     display: grid;
     gap: 60px;
     grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
     margin-inline: 30px;
+    margin-top: 100px;
    
-    border: 2px solid #000000;
+}
+
+.book {
+    display: grid;
+    justify-content: center;
+    border-radius: 40px;
+    border: 3px solid rgba(0, 0, 0, 0.9);
+    background-color: white;
+    font-size: 3rem;
+    color: rgb(17, 24, 39);
     
 }
 
-/* .book {
-    display: grid;
-}
- */
 
 
-/* .input-field-and-button-container>span:nth-child(n+3) {
-    font-size: 2rem;
-} */
