@@ -4,13 +4,21 @@ const inputFieldNumPages = document.querySelector('#input-field-number-pages');
 const AddNewBookButton = document.querySelector('.add-book-button');
 const mainContainer = document.querySelector('.main-container');
 const bookContainer = document.querySelector('.book-container');
+const dialog = document.querySelector('dialog');
+const openDialogBtn = document.querySelector('.open-dialog-btn');
+const closeDialogBtn = document.querySelector('.close-dialog-btn');
 
 
+openDialogBtn.addEventListener('click', () => {
+    dialog.showModal();
+})
 
+closeDialogBtn.addEventListener('click', () => {
+    dialog.close();
+})
 
 let myLibrary = [];
 
-/* let bookRead = false; */
 
     AddNewBookButton.addEventListener('click', () => {
 
@@ -33,15 +41,7 @@ function Book(title, author, pageNum) {
     this.title = title;
     this.author = author;
     this.pageNum = pageNum;
-   
-    this.info = function () {
-        return `${title} by ${author}, ${pageNum} pages, ${this.readMarker()}`
-    }
-  
 }
-
-
-
 
 function addBookToLibrary(array) {
     
@@ -82,8 +82,8 @@ function addBookToLibrary(array) {
 
         bookContainer.appendChild(bookDiv);
 
-
         })
+
     }
 
 
