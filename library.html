@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<script src="library.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="library.js" defer></script>
     <title>Library</title>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="main-container">
+      <span class="heading">Library-App</span>
 
-<div class="main-container">
-    <span class="heading">Library-App</span>
+      <dialog>
+        <form action="" method="get" class="new-book-form">
+          <div class="title-container">
+            <img
+              src="../Library-App/images/library.jpg"
+              alt="Picture by 🇸🇮 Janko Ferlič"
+            />
+            <label for="input-field-title" class="title-text">Title</label>
+            <input type="text" id="input-field-title" />
+          </div>
 
-<dialog>
-<div class="input-field-and-button-container">
+          <div class="author-container">
+            <img
+              src="../Library-App/images/author.jpg"
+              alt="Foto von Giammarco Boscaro"
+            />
+            <label for="input-field-author" class="author-text">Author</label>
+            <input type="text" id="input-field-author" />
+          </div>
 
- <div class="title-container">
-    
-    <img src="../Library-App/images/library.jpg" alt="Picture by 🇸🇮 Janko Ferlič" <a href="https://unsplash.com/de/@itfeelslikefilm?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"></a></a>
-    <span>Title</span>
-    <input  type="text" id="input-field-title">
-</div>
+          <div class="pages-container">
+            <img
+              src="../Library-App/images/pages.jpg"
+              alt="Foto von Dollar Gill"
+            />
+            <label for="input-field-number-pages" class="number-pages-text"
+              >Number of Pages</label
+            >
+            <input type="text" id="input-field-number-pages" />
+          </div>
 
-<div class="author-container">
-    <img src="../Library-App/images/author.jpg" alt="Foto von Giammarco Boscaro" <a href="https://unsplash.com/de/@giamboscaro?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"></a>
-    <span>Author</span>
-    <input type="text" id="input-field-author">
-</div>
+          <button type="submit" id="add-book-to-library-btn">
+            Add Book to Library
+          </button>
+        </form>
 
-
-<div class="pages-container">
-    <img src="../Library-App/images/pages.jpg" alt="Foto von Dollar Gill" <a href="https://unsplash.com/de/@dollargill?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"></a>
-    <span>Number of Pages</span>
-    <input type="text" id="input-field-number-pages">
-
-</div>
-</div>
-
-<div class="dialog-buttons-wrapper">
-    <button class="add-book-button">Add Book to Library</button>
-    <button class="close-dialog-btn">Close</button>
-</div>
-
-</dialog>
-<button class="open-dialog-btn">Add new Book</button>
-
-
-
-
-
-</div>
-<div class="book-container"></div>
-
-</div>
-</body>
+        <button class="close-dialog-btn">Close</button>
+      </dialog>
+      <button class="open-dialog-btn">Add new Book</button>
+    </div>
+    <div class="book-container"></div>
+  </body>
 </html>
-
-  
