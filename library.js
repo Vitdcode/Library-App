@@ -2,6 +2,7 @@ const author = document.querySelector("#author");
 const title = document.querySelector("#title");
 const numberPages = document.querySelector("#number-pages");
 const addBookButton = document.querySelector("#add-book-button");
+const libraryWrapper = document.querySelector(".library-wrapper");
 
 const library = [];
 
@@ -12,45 +13,33 @@ function Book(author, title, pages) {
 }
 
 function addBookToLibrary() {
-
-
   addBookButton.addEventListener("click", () => {
     const book = new Book(author.value, title.value, numberPages.value);
     library.push(book);
-    addBooktoHtml(book)
+    addBooktoHtml();
   });
-
 }
 
-function addBooktoHtml(book) {
+function addBooktoHtml() {
+  document.querySelectorAll(".book").forEach((e) => e.remove());
   library.forEach((book, index) => {
-    const libraryWrapper = document.querySelector(".library-wrapper");
-
-   
-
     const bookWrapper = document.createElement("div");
-    const authorDiv = document.createElement("div");
-    const titleDiv = document.createElement("div");
-    const numberPagesDiv = document.createElement("div");
+    const authorDiv = document.createElement("p");
+    const titleDiv = document.createElement("p");
+    const numberPagesDiv = document.createElement("p");
 
-    /* book = new Book(author.value, title.value, numberPagesDiv.value); */
+    bookWrapper.classList.toggle("book");
+    bookWrapper.id = index;
 
-    authorDiv.classList.add("book");
-    authorDiv.id.add = index;
+    authorDiv.textContent = book.author;
+    titleDiv.textContent = book.title;
+    numberPagesDiv.textContent = book.pages;
 
-    /*  authorDiv.textContent = author.value;
-  titleDiv.textContent = title.value;
-  numberPages.textContent = numberPages.value;
- */
-    authorDiv.textContent = author.value;
-    titleDiv.textContent = title.value;
-    numberPages.textContent = numberPages.value;
+    bookWrapper.appendChild(authorDiv);
+    bookWrapper.appendChild(titleDiv);
+    bookWrapper.appendChild(numberPagesDiv);
 
-    /* addBookButton.addEventListener("click", () => {
-    libraryWrapper.appendChild(authorDiv);
-    libraryWrapper.appendChild(titleDiv);
-    libraryWrapper.appendChild(numberPagesDiv);
-  }); */
+    libraryWrapper.appendChild(bookWrapper);
   });
 }
 
