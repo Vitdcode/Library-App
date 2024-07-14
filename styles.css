@@ -38,11 +38,6 @@ body {
   overflow: auto;
 }
 
-.author-wrapper {
-  position: sticky;
-  top: 0;
-}
-
 .wallpaper-attribution {
   position: absolute;
   color: white;
@@ -69,12 +64,19 @@ a:hover {
 
 .book-entry-wrapper {
   position: sticky;
-  top: 250px;
+  top: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 800px;
   gap: 40px;
+}
+
+#book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  align-items: center;
 }
 
 .book-entry-wrapper h1 {
@@ -92,9 +94,11 @@ input {
   outline: transparent;
   border: 2px solid rgb(245, 222, 179);
   background-color: rgb(245, 222, 179);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   transition-duration: 150ms;
   padding: 5px;
+  caret-color: rgb(250, 222, 170);
+  color: rgb(97, 97, 97);
 }
 
 input:focus {
@@ -132,9 +136,10 @@ input:focus {
   background-color: rgb(245, 222, 179, 0.4);
 }
 
-h2 {
+label {
   color: rgb(245, 222, 179);
   text-decoration: underline;
+  font-size: 1.5rem;
 }
 
 #add-book-button {
