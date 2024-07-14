@@ -2,7 +2,7 @@ const author = document.querySelector("#author");
 const title = document.querySelector("#title");
 const numberPages = document.querySelector("#number-pages");
 const bookForm = document.querySelector("#book-form");
-const libraryWrapper = document.querySelector(".library-wrapper");
+const booksWrapper = document.querySelector(".books-wrapper");
 
 const library = [];
 
@@ -43,7 +43,7 @@ function addBooktoHtml() {
     bookWrapper.appendChild(titleDiv);
     bookWrapper.appendChild(numberPagesDiv);
 
-    libraryWrapper.appendChild(bookWrapper);
+    booksWrapper.appendChild(bookWrapper);
   });
 }
 

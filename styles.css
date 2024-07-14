@@ -18,34 +18,6 @@ body {
   padding: 0;
 }
 
-#app-headline {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 3rem;
-  grid-column: 1/6;
-  color: rgb(245, 222, 179);
-}
-
-.library-wrapper::after {
-  content: "";
-  position: absolute;
-  bottom: 91%;
-  left: 24%;
-  /* top: 40px; */
-  width: 75%;
-  height: 2px;
-  background-color: rgb(245, 222, 179);
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms;
-  opacity: 1;
-  transform: scale(0);
-  transform-origin: center;
-}
-
-.library-wrapper:hover::after {
-  transform: scale(1);
-}
-
 .book-entry-and-books-wrapper {
   position: relative;
   display: grid;
@@ -77,13 +49,6 @@ a:hover {
   color: rgb(243, 235, 219);
 }
 
-.library-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 1fr);
-  grid-auto-rows: 228px;
-  border-left: 1px solid rgba(105, 105, 105, 0.5);
-}
-
 .book-entry-wrapper {
   position: sticky;
   top: 200px;
@@ -102,7 +67,8 @@ a:hover {
 }
 
 .book-entry-wrapper h1 {
-  color: rgb(245, 222, 179);
+  /* color: rgb(245, 222, 179); */
+  color: rgb(255, 233, 192);
   margin-bottom: 20px;
   background-color: rgb(253, 230, 138, 0.2);
   border-radius: 10px;
@@ -190,9 +156,9 @@ label {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 15px;
-  top: 40px;
-  width: 83%;
+  left: 13px;
+  top: 35px;
+  width: 85%;
   height: 2px;
   background-color: rgb(245, 222, 179);
   opacity: 0;
@@ -203,5 +169,54 @@ label {
 }
 
 #add-book-button:hover::after {
+  transform: scale(1);
+}
+
+.library-wrapper {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(105, 105, 105, 0.5);
+}
+
+.books-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+  row-gap: 60px;
+  column-gap: 60px;
+}
+
+.book {
+  background-color: rgb(245, 222, 179);
+  width: 260px;
+  height: 390px;
+}
+
+#app-headline {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 80px;
+  font-size: 3rem;
+  grid-column: 1/10;
+  color: rgb(245, 222, 179);
+}
+
+.library-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 91%;
+  left: 24%;
+  width: 75%;
+  height: 2px;
+  background-color: rgb(245, 222, 179);
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 1;
+  transform: scale(0);
+  transform-origin: center;
+}
+
+.library-wrapper:hover::after {
   transform: scale(1);
 }
