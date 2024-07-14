@@ -23,6 +23,27 @@ body {
   margin-top: 20px;
   font-size: 3rem;
   grid-column: 1/6;
+  color: rgb(245, 222, 179);
+}
+
+.library-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 91%;
+  left: 24%;
+  /* top: 40px; */
+  width: 75%;
+  height: 2px;
+  background-color: rgb(245, 222, 179);
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 1;
+  transform: scale(0);
+  transform-origin: center;
+}
+
+.library-wrapper:hover::after {
+  transform: scale(1);
 }
 
 .book-entry-and-books-wrapper {
