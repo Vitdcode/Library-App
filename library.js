@@ -18,6 +18,9 @@ function addBookToLibrary() {
     const book = new Book(author.value, title.value, numberPages.value);
     library.push(book);
     addBooktoHtml();
+    author.value = "";
+    title.value = "";
+    numberPages.value = "";
   });
 }
 
