@@ -36,6 +36,7 @@ body {
   border-radius: 20px;
   backdrop-filter: blur(10px);
   overflow: auto;
+  box-shadow: 0px 7px 15px 6px rgba(0, 0, 0, 0.75);
 }
 
 .wallpaper-attribution {
@@ -113,9 +114,9 @@ input:focus {
   align-items: center;
   gap: 20px;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 15px;
   transition-duration: 200ms;
-  border-radius: 10px;
+  border-radius: 13px;
 }
 
 .author-wrapper:hover,
@@ -148,9 +149,7 @@ label {
   width: 180px;
   border-radius: 13px;
   border: none;
-  /* background-color: rgb(255, 247, 164); */
   background-color: rgb(104, 177, 167);
-  /* color: rgb(126, 124, 111); */
   color: rgb(245, 222, 179);
   font-size: 1rem;
   font-weight: bold;
@@ -159,36 +158,12 @@ label {
 
 #add-book-button:hover {
   cursor: pointer;
-  /* background-color: rgb(13, 99, 87); */
-  /* color: rgb(131, 131, 131); */
-  /* border: 2px solid white; */
-  /* background-color: rgb(253, 250, 216); */
-  /* background-color: rgb(9, 189, 165); */
-  /* text-decoration: underline; */
+  border: 2px solid white;
 }
 
 #add-book-button:active {
-  background-color: rgb(255, 247, 164);
+  background-color: rgb(132, 180, 174);
 }
-
-/* #add-book-button::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 15px;
-  top: 35px;
-  width: 83%;
-  height: 2px;
-  background-color: rgb(245, 222, 179);
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms;
-}
-
-#add-book-button:hover::after,
-#add-book-button:focus::after {
-  opacity: 1;
-  transform: translate3d(0, 0.2em, 0);
-} */
 
 #add-book-button::after {
   content: "";
@@ -206,7 +181,6 @@ label {
   transform-origin: center;
 }
 
-#add-book-button:hover::after,
-#add-book-button:focus::after {
+#add-book-button:hover::after {
   transform: scale(1);
 }
