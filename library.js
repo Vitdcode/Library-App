@@ -31,17 +31,25 @@ function addBooktoHtml() {
     const authorDiv = document.createElement("p");
     const titleDiv = document.createElement("p");
     const numberPagesDiv = document.createElement("p");
+    const bookIcon = document.createElement("img");
+    const bookBlurBackground = document.createElement("div");
 
     bookWrapper.classList.toggle("book");
     bookWrapper.id = index;
 
-    authorDiv.textContent = book.author;
-    titleDiv.textContent = book.title;
-    numberPagesDiv.textContent = book.pages;
+    bookBlurBackground.classList.add("book-blur-background");
 
+    authorDiv.textContent = `Author: ${book.author}`;
+    titleDiv.textContent = `Title: ${book.title}`;
+    numberPagesDiv.textContent = `Number of Pages: ${book.pages}`;
+    bookIcon.src = "./images/book_icon.png";
+    bookIcon.alt = "Book Icon by Pixel perfect on freepik.com";
+
+    bookWrapper.appendChild(bookBlurBackground);
     bookWrapper.appendChild(authorDiv);
     bookWrapper.appendChild(titleDiv);
     bookWrapper.appendChild(numberPagesDiv);
+    bookWrapper.appendChild(bookIcon);
 
     booksWrapper.appendChild(bookWrapper);
   });
