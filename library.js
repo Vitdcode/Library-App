@@ -6,20 +6,21 @@ const booksWrapper = document.querySelector(".books-wrapper");
 
 const library = [];
 
-function Book(author, title, pages) {
+function Book(author, title, pages, favorite) {
   this.author = author;
   this.title = title;
   this.pages = pages;
+  this.favorite = favorite;
 }
 
-function randomIntFromInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
+Book.prototype.switchFavoriteImg = function () {
+  this.favorite = this.favorite === false ? true : false;
+};
 
 function addBookToLibrary() {
   bookForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    const book = new Book(author.value, title.value, numberPages.value);
+    const book = new Book(author.value, title.value, numberPages.value, false);
     library.push(book);
     addBooktoHtml();
     author.value = "";
@@ -29,37 +30,50 @@ function addBookToLibrary() {
 }
 
 function addBooktoHtml() {
-  let rgbValue1 = Math.floor(Math.random() * 255);
-  let rgbValue2 = Math.floor(Math.random() * 255);
-  let rgbValue3 = Math.floor(Math.random() * 255);
   document.querySelectorAll(".book").forEach((e) => e.remove());
   library.forEach((book, index) => {
-    const bookWrapper = document.createElement("div");
-    const authorDiv = document.createElement("p");
-    const titleDiv = document.createElement("p");
-    const numberPagesDiv = document.createElement("p");
-    const favoriteNotSelected = document.createElement("img");
-    const bookBlurBackground = document.createElement("div");
+    if (!library.includes(index)) {
+      const bookWrapper = document.createElement("div");
+      const authorDiv = document.createElement("p");
+      const titleDiv = document.createElement("p");
+      const numberPagesDiv = document.createElement("p");
+      const bookBlurBackground = document.createElement("div");
+      const favorite = document.createElement("img");
 
-    bookWrapper.classList.toggle("book");
-    bookWrapper.id = index;
+      bookWrapper.classList.add("book");
+      bookWrapper.id = index;
 
-    bookBlurBackground.classList.add("book-blur-background");
+      bookBlurBackground.classList.add("book-blur-background");
 
-    /* authorDiv.textContent = `Author: ${book.author}`;
+      /* authorDiv.textContent = `Author: ${book.author}`;
     numberPagesDiv.textContent = `Number of Pages: ${book.pages}`; */
-    titleDiv.textContent = book.title;
-    /* titleDiv.style.backgroundColor = `rgba(${Math.floor(Math.random() * randomIntFromInterval(150, 255))}, ${Math.floor(Math.random() * randomIntFromInterval(150, 255))}, ${Math.floor(Math.random() * randomIntFromInterval(150, 255))}, 0.5)`; //prettier-ignore */
-    favoriteNotSelected.src = "./images/favorite_not_selected.png";
-    favoriteNotSelected.alt = "Book Icon by Pixel perfect on freepik.com";
+      titleDiv.textContent = book.title;
+      if (book.favorite == false) {
+        favorite.src = "./images/favorite_not_selected.png";
+        favorite.alt = "Book Icon by Pixel perfect on freepik.com";
+      } else if (book.favorite == true) {
+        favorite.src = "./images/favorite_selected.png";
+        favorite.alt = "Book Icon by Pixel perfect on freepik.com";
+      }
 
-    bookWrapper.appendChild(bookBlurBackground);
-    bookWrapper.appendChild(authorDiv);
-    bookWrapper.appendChild(titleDiv);
-    bookWrapper.appendChild(numberPagesDiv);
-    bookWrapper.appendChild(favoriteNotSelected);
+      bookWrapper.appendChild(bookBlurBackground);
+      bookWrapper.appendChild(authorDiv);
+      bookWrapper.appendChild(titleDiv);
+      bookWrapper.appendChild(numberPagesDiv);
+      bookWrapper.appendChild(favorite);
 
-    booksWrapper.appendChild(bookWrapper);
+      booksWrapper.appendChild(bookWrapper);
+
+      favorite.addEventListener("click", () => {
+        if (book.favorite == false) {
+          favorite.src = "./images/favorite_selected.png";
+          book.switchFavoriteImg();
+        } else if (book.favorite == true) {
+          favorite.src = "./images/favorite_not_selected.png";
+          book.switchFavoriteImg();
+        }
+      });
+    }
   });
 }
 
