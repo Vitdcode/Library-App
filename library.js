@@ -12,6 +12,10 @@ function Book(author, title, pages) {
   this.pages = pages;
 }
 
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function addBookToLibrary() {
   bookForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -19,19 +23,22 @@ function addBookToLibrary() {
     library.push(book);
     addBooktoHtml();
     author.value = "";
-    title.value = "";
+    /*  title.value = ""; */
     numberPages.value = "";
   });
 }
 
 function addBooktoHtml() {
+  let rgbValue1 = Math.floor(Math.random() * 255);
+  let rgbValue2 = Math.floor(Math.random() * 255);
+  let rgbValue3 = Math.floor(Math.random() * 255);
   document.querySelectorAll(".book").forEach((e) => e.remove());
   library.forEach((book, index) => {
     const bookWrapper = document.createElement("div");
     const authorDiv = document.createElement("p");
     const titleDiv = document.createElement("p");
     const numberPagesDiv = document.createElement("p");
-    const bookIcon = document.createElement("img");
+    const favoriteNotSelected = document.createElement("img");
     const bookBlurBackground = document.createElement("div");
 
     bookWrapper.classList.toggle("book");
@@ -39,17 +46,18 @@ function addBooktoHtml() {
 
     bookBlurBackground.classList.add("book-blur-background");
 
-    authorDiv.textContent = `Author: ${book.author}`;
-    titleDiv.textContent = `Title: ${book.title}`;
-    numberPagesDiv.textContent = `Number of Pages: ${book.pages}`;
-    bookIcon.src = "./images/book_icon.png";
-    bookIcon.alt = "Book Icon by Pixel perfect on freepik.com";
+    /* authorDiv.textContent = `Author: ${book.author}`;
+    numberPagesDiv.textContent = `Number of Pages: ${book.pages}`; */
+    titleDiv.textContent = book.title;
+    /* titleDiv.style.backgroundColor = `rgba(${Math.floor(Math.random() * randomIntFromInterval(150, 255))}, ${Math.floor(Math.random() * randomIntFromInterval(150, 255))}, ${Math.floor(Math.random() * randomIntFromInterval(150, 255))}, 0.5)`; //prettier-ignore */
+    favoriteNotSelected.src = "./images/favorite_not_selected.png";
+    favoriteNotSelected.alt = "Book Icon by Pixel perfect on freepik.com";
 
     bookWrapper.appendChild(bookBlurBackground);
     bookWrapper.appendChild(authorDiv);
     bookWrapper.appendChild(titleDiv);
     bookWrapper.appendChild(numberPagesDiv);
-    bookWrapper.appendChild(bookIcon);
+    bookWrapper.appendChild(favoriteNotSelected);
 
     booksWrapper.appendChild(bookWrapper);
   });
