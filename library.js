@@ -1,12 +1,12 @@
-const author = document.querySelector("#author");
-const title = document.querySelector("#title");
-const numberPages = document.querySelector("#number-pages");
-const bookForm = document.querySelector("#book-form");
-const booksWrapper = document.querySelector(".books-wrapper");
-
-const library = [];
-
 const Addingbook = (() => {
+  const author = document.querySelector("#author");
+  const title = document.querySelector("#title");
+  const numberPages = document.querySelector("#number-pages");
+  const bookForm = document.querySelector("#book-form");
+  const booksWrapper = document.querySelector(".books-wrapper");
+
+  const library = [];
+
   Book.prototype.switchFavoriteImg = function () {
     this.favorite = this.favorite === false ? true : false;
   };
@@ -70,10 +70,10 @@ const BookFeatures = (() => {
   function favorites(book, favorite) {
     if (book.favorite == false) {
       favorite.src = "./images/favorite_not_selected.png";
-      favorite.alt = "Book Icon by Pixel perfect on freepik.com";
+      favorite.alt = "favorites Icon by Freepik on freepik.com";
     } else if (book.favorite == true) {
       favorite.src = "./images/favorite_selected.png";
-      favorite.alt = "Book Icon by Pixel perfect on freepik.com";
+      favorite.alt = "favorites Icon by Freepik on freepik.com";
     }
 
     favorite.addEventListener("click", () => {
