@@ -197,13 +197,14 @@ label {
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 2px 1px 15px 2px rgb(245, 222, 179, 0.75);
-  transition-duration: 200ms;
+  transition-duration: 150ms;
 }
 
 .book:hover {
   width: 270px;
   height: 410px;
   cursor: pointer;
+  /* outline: 3px solid rgb(15, 196, 151); */
 }
 
 .book img {
@@ -224,7 +225,6 @@ label {
   z-index: 2;
   color: rgb(245, 222, 179);
   font-size: 1.5rem;
-  /* background-color: rgb(245, 222, 179, 0.5); */
   background-color: rgba(85, 18, 172, 0.5);
   text-align: center;
   text-wrap: balance;
@@ -235,9 +235,8 @@ label {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  backdrop-filter: brightness(80%);
   z-index: 1;
 }
 

@@ -6,33 +6,35 @@ const booksWrapper = document.querySelector(".books-wrapper");
 
 const library = [];
 
-function Book(author, title, pages, favorite) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.favorite = favorite;
-}
+const Addingbook = (() => {
+  Book.prototype.switchFavoriteImg = function () {
+    this.favorite = this.favorite === false ? true : false;
+  };
 
-Book.prototype.switchFavoriteImg = function () {
-  this.favorite = this.favorite === false ? true : false;
-};
+  function Book(author, title, pages, favorite) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.favorite = favorite;
+  }
 
-function addBookToLibrary() {
   bookForm.addEventListener("submit", function (event) {
     event.preventDefault();
+    addBookToLibrary();
+  });
+
+  function addBookToLibrary() {
     const book = new Book(author.value, title.value, numberPages.value, false);
     library.push(book);
     addBooktoHtml();
     author.value = "";
     /*  title.value = ""; */
     numberPages.value = "";
-  });
-}
+  }
 
-function addBooktoHtml() {
-  document.querySelectorAll(".book").forEach((e) => e.remove());
-  library.forEach((book, index) => {
-    if (!library.includes(index)) {
+  function addBooktoHtml() {
+    document.querySelectorAll(".book").forEach((e) => e.remove());
+    library.forEach((book, index) => {
       const bookWrapper = document.createElement("div");
       const authorDiv = document.createElement("p");
       const titleDiv = document.createElement("p");
@@ -48,13 +50,6 @@ function addBooktoHtml() {
       /* authorDiv.textContent = `Author: ${book.author}`;
     numberPagesDiv.textContent = `Number of Pages: ${book.pages}`; */
       titleDiv.textContent = book.title;
-      if (book.favorite == false) {
-        favorite.src = "./images/favorite_not_selected.png";
-        favorite.alt = "Book Icon by Pixel perfect on freepik.com";
-      } else if (book.favorite == true) {
-        favorite.src = "./images/favorite_selected.png";
-        favorite.alt = "Book Icon by Pixel perfect on freepik.com";
-      }
 
       bookWrapper.appendChild(bookBlurBackground);
       bookWrapper.appendChild(authorDiv);
@@ -64,17 +59,33 @@ function addBooktoHtml() {
 
       booksWrapper.appendChild(bookWrapper);
 
-      favorite.addEventListener("click", () => {
-        if (book.favorite == false) {
-          favorite.src = "./images/favorite_selected.png";
-          book.switchFavoriteImg();
-        } else if (book.favorite == true) {
-          favorite.src = "./images/favorite_not_selected.png";
-          book.switchFavoriteImg();
-        }
-      });
-    }
-  });
-}
+      BookFeatures.favorites(book, favorite);
+    });
+  }
 
-addBookToLibrary();
+  return { addBookToLibrary, addBooktoHtml };
+})();
+
+const BookFeatures = (() => {
+  function favorites(book, favorite) {
+    if (book.favorite == false) {
+      favorite.src = "./images/favorite_not_selected.png";
+      favorite.alt = "Book Icon by Pixel perfect on freepik.com";
+    } else if (book.favorite == true) {
+      favorite.src = "./images/favorite_selected.png";
+      favorite.alt = "Book Icon by Pixel perfect on freepik.com";
+    }
+
+    favorite.addEventListener("click", () => {
+      if (book.favorite == false) {
+        favorite.src = "./images/favorite_selected.png";
+        book.switchFavoriteImg();
+      } else if (book.favorite == true) {
+        favorite.src = "./images/favorite_not_selected.png";
+        book.switchFavoriteImg();
+      }
+    });
+  }
+
+  return { favorites };
+})();
