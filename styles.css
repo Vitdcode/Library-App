@@ -49,6 +49,8 @@ a:hover {
   color: rgb(243, 235, 219);
 }
 
+/* New Book Entry Section */
+
 .book-entry-wrapper {
   position: sticky;
   top: 100px;
@@ -171,6 +173,94 @@ label {
   transform: scale(1);
 }
 
+#favorites-menu-button {
+  margin-top: 30px;
+  height: 70px;
+  width: 220px;
+  border-radius: 13px;
+  border: none;
+  background-color: rgb(104, 177, 167);
+  color: rgb(245, 222, 179);
+  font-size: 1rem;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+}
+
+#favorites-menu-button:hover {
+  cursor: pointer;
+}
+
+#favorites-menu-button:hover {
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+#favorites-menu-button:active {
+  background-color: rgb(132, 180, 174);
+}
+
+#favorites-menu-button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 70px;
+  top: 40px;
+  width: 35%;
+  height: 2px;
+  background-color: rgb(245, 222, 179);
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 1;
+  transform: scale(0);
+  transform-origin: center;
+}
+
+#favorites-menu-button:hover::after {
+  transform: scale(1);
+}
+
+/* dialog menu favorites */
+
+.dialog-wrapper {
+  display: flex;
+  height: 700px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 60px;
+  margin-block: 10px;
+}
+
+dialog {
+  border-radius: 10px;
+  margin-inline: auto;
+  margin-block: auto;
+  height: 80%;
+  width: 80%;
+  background-color: rgb(22, 22, 43);
+  opacity: 0.98;
+  border: 2px solid black;
+}
+
+dialog[open] {
+  animation: fadein 150ms;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.close-dialog-button {
+  width: 220px;
+  height: 80px;
+}
+
+/* Library Section */
+
 .library-wrapper {
   display: flex;
   flex-direction: column;
@@ -266,88 +356,4 @@ label {
 
 .library-wrapper:hover::after {
   transform: scale(1);
-}
-
-#favorites-menu-button {
-  margin-top: 30px;
-  height: 70px;
-  width: 220px;
-  border-radius: 13px;
-  border: none;
-  background-color: rgb(104, 177, 167);
-  color: rgb(245, 222, 179);
-  font-size: 1rem;
-  font-weight: bold;
-  backdrop-filter: blur(10px);
-}
-
-#favorites-menu-button:hover {
-  cursor: pointer;
-}
-
-#favorites-menu-button:hover {
-  cursor: pointer;
-  border: 2px solid white;
-}
-
-#favorites-menu-button:active {
-  background-color: rgb(132, 180, 174);
-}
-
-#favorites-menu-button::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 70px;
-  top: 40px;
-  width: 35%;
-  height: 2px;
-  background-color: rgb(245, 222, 179);
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms;
-  opacity: 1;
-  transform: scale(0);
-  transform-origin: center;
-}
-
-#favorites-menu-button:hover::after {
-  transform: scale(1);
-}
-
-.dialog-wrapper {
-  display: flex;
-  height: 700px;
-  flex-direction: column;
-  justify-content: center;
-  gap: 60px;
-  margin-block: 10px;
-}
-
-dialog {
-  border-radius: 10px;
-  margin-inline: auto;
-  margin-block: auto;
-  height: 80%;
-  width: 80%;
-  background-color: rgb(22, 22, 43);
-  opacity: 0.98;
-  border: 2px solid black;
-}
-
-dialog[open] {
-  animation: fadein 150ms;
-}
-
-@keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.close-dialog-button {
-  width: 220px;
-  height: 80px;
 }
