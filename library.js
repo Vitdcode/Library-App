@@ -34,6 +34,7 @@ const Addingbook = (() => {
 
   function addBooktoHtml() {
     document.querySelectorAll(".book").forEach((e) => e.remove());
+
     library.forEach((book, index) => {
       const bookWrapper = document.createElement("div");
       const authorDiv = document.createElement("p");
@@ -68,9 +69,11 @@ const Addingbook = (() => {
 
 const BookFeatures = (() => {
   const closeDialog = document.createElement("button");
+
   function favorites(book, favorite, bookWrapper) {
     const favoritesMenu = document.querySelector("#favorites-menu-button");
     const dialogWrapper = document.querySelector(".dialog-wrapper");
+
     const dialog = document.querySelector("dialog");
 
     closeDialog.textContent = "Close";
@@ -86,7 +89,7 @@ const BookFeatures = (() => {
     });
 
     let clonedBookWrapper = bookWrapper.cloneNode(true);
-
+    attachEventListenerToFavorites(book, favorite);
     if (book.favorite == false) {
       favorite.src = "./images/favorite_not_selected.png";
       favorite.alt = "favorites Icon by Freepik on freepik.com";
@@ -95,20 +98,24 @@ const BookFeatures = (() => {
       favorite.alt = "favorites Icon by Freepik on freepik.com";
       clonedBookWrapper = bookWrapper.cloneNode(true);
       dialogWrapper.appendChild(clonedBookWrapper);
+      const favoriteImgListener = clonedBookWrapper.querySelector("img");
+      attachEventListenerToFavorites(book, favoriteImgListener); // prettier-ignore
     }
 
-    favorite.addEventListener("click", () => {
-      if (book.favorite == false) {
-        book.switchFavoriteImg();
-        favorite.src = "./images/favorite_selected.png";
-        Addingbook.addBooktoHtml();
-      } else if (book.favorite == true) {
-        favorite.src = "./images/favorite_not_selected.png";
-        book.switchFavoriteImg();
-        dialogWrapper.removeChild(clonedBookWrapper);
-        Addingbook.addBooktoHtml();
-      }
-    });
+    function attachEventListenerToFavorites(book, favorite) {
+      favorite.addEventListener("click", () => {
+        if (book.favorite == false) {
+          book.switchFavoriteImg();
+          favorite.src = "./images/favorite_selected.png";
+
+          Addingbook.addBooktoHtml();
+        } else if (book.favorite == true) {
+          favorite.src = "./images/favorite_not_selected.png";
+          book.switchFavoriteImg();
+          Addingbook.addBooktoHtml();
+        }
+      });
+    }
   }
 
   return { favorites };
