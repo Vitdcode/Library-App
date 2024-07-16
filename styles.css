@@ -313,3 +313,41 @@ label {
 #favorites-menu-button:hover::after {
   transform: scale(1);
 }
+
+.dialog-wrapper {
+  display: flex;
+  height: 700px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 60px;
+  margin-block: 10px;
+}
+
+dialog {
+  border-radius: 10px;
+  margin-inline: auto;
+  margin-block: auto;
+  height: 80%;
+  width: 80%;
+  background-color: rgb(22, 22, 43);
+  opacity: 0.98;
+  border: 2px solid black;
+}
+
+dialog[open] {
+  animation: fadein 150ms;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.close-dialog-button {
+  width: 220px;
+  height: 80px;
+}

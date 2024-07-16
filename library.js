@@ -59,7 +59,7 @@ const Addingbook = (() => {
 
       booksWrapper.appendChild(bookWrapper);
 
-      BookFeatures.favorites(book, favorite);
+      BookFeatures.favorites(book, favorite, bookWrapper);
     });
   }
 
@@ -67,22 +67,46 @@ const Addingbook = (() => {
 })();
 
 const BookFeatures = (() => {
-  function favorites(book, favorite) {
+  const closeDialog = document.createElement("button");
+  function favorites(book, favorite, bookWrapper) {
+    const favoritesMenu = document.querySelector("#favorites-menu-button");
+    const dialogWrapper = document.querySelector(".dialog-wrapper");
+    const dialog = document.querySelector("dialog");
+
+    closeDialog.textContent = "Close";
+    closeDialog.classList.add("close-dialog-button");
+    dialog.appendChild(closeDialog);
+
+    favoritesMenu.addEventListener("click", () => {
+      dialog.showModal();
+    });
+
+    closeDialog.addEventListener("click", () => {
+      dialog.close();
+    });
+
+    let clonedBookWrapper = bookWrapper.cloneNode(true);
+
     if (book.favorite == false) {
       favorite.src = "./images/favorite_not_selected.png";
       favorite.alt = "favorites Icon by Freepik on freepik.com";
     } else if (book.favorite == true) {
       favorite.src = "./images/favorite_selected.png";
       favorite.alt = "favorites Icon by Freepik on freepik.com";
+      clonedBookWrapper = bookWrapper.cloneNode(true);
+      dialogWrapper.appendChild(clonedBookWrapper);
     }
 
     favorite.addEventListener("click", () => {
       if (book.favorite == false) {
-        favorite.src = "./images/favorite_selected.png";
         book.switchFavoriteImg();
+        favorite.src = "./images/favorite_selected.png";
+        Addingbook.addBooktoHtml();
       } else if (book.favorite == true) {
         favorite.src = "./images/favorite_not_selected.png";
         book.switchFavoriteImg();
+        dialogWrapper.removeChild(clonedBookWrapper);
+        Addingbook.addBooktoHtml();
       }
     });
   }
