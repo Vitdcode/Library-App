@@ -232,6 +232,11 @@ label {
   margin-top: 10px;
 }
 
+.dialog-wrapper > .book > .favoriteIcon {
+  height: 32px;
+  width: 32px;
+}
+
 .dialog-wrapper > .book:hover {
   outline: 2px solid rgb(245, 222, 179);
 }
