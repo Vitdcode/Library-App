@@ -82,7 +82,7 @@ const Addingbook = (() => {
 
       BookFeatures.favorites(book, favorite, bookWrapper);
       BookFeatures.bookReadStatus(book, readStatusDiv, bookReadCheckbox);
-      BookFeatures.deleteBook(book, booksWrapper, bookWrapper, deleteBookButton, library); //prettier-ignore
+      BookFeatures.deleteBook(booksWrapper, bookWrapper, deleteBookButton, library); //prettier-ignore
     });
   }
 
@@ -90,24 +90,16 @@ const Addingbook = (() => {
 })();
 
 const BookFeatures = (() => {
-  function deleteBook(
-    book,
-    booksWrapper,
-    bookWrapper,
-    deleteBookButton,
-    library
-  ) {
+  function deleteBook(booksWrapper, bookWrapper, deleteBookButton, library) {
     deleteBookButton.src = "./images/delete.png";
 
-    deleteBookButton.addEventListener("click", (event) => {
+    deleteBookButton.addEventListener("click", () => {
       booksWrapper.removeChild(bookWrapper);
-      const bookId = event.target.id;
+      const bookId = bookWrapper.id;
       library.splice(bookId, 1);
-      book.switchFavoriteImg();
       Addingbook.addBooktoHtml();
     });
   }
-
   function bookReadStatus(book, readStatusDiv, bookReadCheckbox) {
     if (book.readStatus == false) {
       readStatusDiv.textContent = "Mark as Read";
@@ -153,6 +145,7 @@ const BookFeatures = (() => {
     });
 
     let clonedBookWrapper = bookWrapper.cloneNode(true);
+
     attachEventListenerToFavorites(book, favorite);
     if (book.favorite == false) {
       favorite.src = "./images/favorite_not_selected.png";
@@ -161,7 +154,11 @@ const BookFeatures = (() => {
       favorite.src = "./images/favorite_selected.png";
       favorite.alt = "favorites Icon by Freepik on freepik.com";
       clonedBookWrapper = bookWrapper.cloneNode(true);
+
       dialogWrapper.appendChild(clonedBookWrapper);
+      const deleteBookClass = clonedBookWrapper.querySelector(".delete-book");
+      deleteBookClass.classList.remove("delete-book");
+
       const favoriteImgListener = clonedBookWrapper.querySelector("img");
       attachEventListenerToFavorites(book, favoriteImgListener); // prettier-ignore
     }
