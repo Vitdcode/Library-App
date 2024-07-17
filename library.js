@@ -54,14 +54,15 @@ const Addingbook = (() => {
       const bookBlurBackground = document.createElement("div");
       const favorite = document.createElement("img");
       const readStatusDiv = document.createElement("div");
+      const bookReadCheckbox = document.createElement("img");
 
       bookWrapper.classList.add("book");
       bookWrapper.id = index;
 
       readStatusDiv.classList.add("read-status");
-
       bookBlurBackground.classList.add("book-blur-background");
-
+      favorite.classList.add("favoriteIcon");
+      bookReadCheckbox.classList.add("checkbox");
       /* authorDiv.textContent = `Author: ${book.author}`;
     numberPagesDiv.textContent = `Number of Pages: ${book.pages}`; */
       titleDiv.textContent = book.title;
@@ -72,11 +73,12 @@ const Addingbook = (() => {
       bookWrapper.appendChild(numberPagesDiv);
       bookWrapper.appendChild(favorite);
       bookWrapper.appendChild(readStatusDiv);
+      bookWrapper.appendChild(bookReadCheckbox);
 
       booksWrapper.appendChild(bookWrapper);
 
       BookFeatures.favorites(book, favorite, bookWrapper);
-      BookFeatures.bookReadStatus(book, readStatusDiv);
+      BookFeatures.bookReadStatus(book, readStatusDiv, bookReadCheckbox);
     });
   }
 
@@ -84,30 +86,33 @@ const Addingbook = (() => {
 })();
 
 const BookFeatures = (() => {
-  const closeDialog = document.createElement("button");
-
-  function bookReadStatus(book, readStatusDiv) {
+  function bookReadStatus(book, readStatusDiv, bookReadCheckbox) {
     if (book.readStatus == false) {
       readStatusDiv.textContent = "Mark as Read";
+      bookReadCheckbox.src = "./images/check_unchecked.png";
     } else if (book.readStatus == true) {
       readStatusDiv.textContent = "Mark as Unread";
+      bookReadCheckbox.src = "./images/check_checked.png";
     }
 
     readStatusDiv.addEventListener("click", () => {
       if (book.readStatus == false) {
         readStatusDiv.textContent = "Mark as Unread";
+        bookReadCheckbox.src = "./images/check_checked.png";
         book.switchReadStatus();
       } else if (book.readStatus == true) {
         readStatusDiv.textContent = "Mark as Read";
+        bookReadCheckbox.src = "./images/check_unchecked.png";
         book.switchReadStatus();
       }
     });
   }
 
+  const favoritesCloseButtonWrapper = document.createElement("div");
+  const closeDialog = document.createElement("button");
   function favorites(book, favorite, bookWrapper) {
     const favoritesMenu = document.querySelector("#favorites-menu-button");
     const dialogWrapper = document.querySelector(".dialog-wrapper");
-    const favoritesCloseButtonWrapper = document.createElement("div");
 
     const dialog = document.querySelector("dialog");
 
