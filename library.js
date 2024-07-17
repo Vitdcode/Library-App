@@ -11,11 +11,16 @@ const Addingbook = (() => {
     this.favorite = this.favorite === false ? true : false;
   };
 
-  function Book(author, title, pages, favorite) {
+  Book.prototype.switchReadStatus = function () {
+    this.readStatus = this.readStatus === false ? true : false;
+  };
+
+  function Book(author, title, pages, favorite, readStatus) {
     this.author = author;
     this.title = title;
     this.pages = pages;
     this.favorite = favorite;
+    this.readStatus = readStatus;
   }
 
   bookForm.addEventListener("submit", function (event) {
@@ -24,7 +29,13 @@ const Addingbook = (() => {
   });
 
   function addBookToLibrary() {
-    const book = new Book(author.value, title.value, numberPages.value, false);
+    const book = new Book(
+      author.value,
+      title.value,
+      numberPages.value,
+      false,
+      false
+    );
     library.push(book);
     addBooktoHtml();
     author.value = "";
@@ -42,9 +53,12 @@ const Addingbook = (() => {
       const numberPagesDiv = document.createElement("p");
       const bookBlurBackground = document.createElement("div");
       const favorite = document.createElement("img");
+      const readStatusDiv = document.createElement("div");
 
       bookWrapper.classList.add("book");
       bookWrapper.id = index;
+
+      readStatusDiv.classList.add("read-status");
 
       bookBlurBackground.classList.add("book-blur-background");
 
@@ -57,10 +71,12 @@ const Addingbook = (() => {
       bookWrapper.appendChild(titleDiv);
       bookWrapper.appendChild(numberPagesDiv);
       bookWrapper.appendChild(favorite);
+      bookWrapper.appendChild(readStatusDiv);
 
       booksWrapper.appendChild(bookWrapper);
 
       BookFeatures.favorites(book, favorite, bookWrapper);
+      BookFeatures.bookReadStatus(book, readStatusDiv);
     });
   }
 
@@ -70,15 +86,36 @@ const Addingbook = (() => {
 const BookFeatures = (() => {
   const closeDialog = document.createElement("button");
 
+  function bookReadStatus(book, readStatusDiv) {
+    if (book.readStatus == false) {
+      readStatusDiv.textContent = "Mark as Read";
+    } else if (book.readStatus == true) {
+      readStatusDiv.textContent = "Mark as Unread";
+    }
+
+    readStatusDiv.addEventListener("click", () => {
+      if (book.readStatus == false) {
+        readStatusDiv.textContent = "Mark as Unread";
+        book.switchReadStatus();
+      } else if (book.readStatus == true) {
+        readStatusDiv.textContent = "Mark as Read";
+        book.switchReadStatus();
+      }
+    });
+  }
+
   function favorites(book, favorite, bookWrapper) {
     const favoritesMenu = document.querySelector("#favorites-menu-button");
     const dialogWrapper = document.querySelector(".dialog-wrapper");
+    const favoritesCloseButtonWrapper = document.createElement("div");
 
     const dialog = document.querySelector("dialog");
 
     closeDialog.textContent = "Close";
     closeDialog.classList.add("close-dialog-button");
-    dialog.appendChild(closeDialog);
+    favoritesCloseButtonWrapper.classList.add("favoritesCloseButtonWrapper");
+    favoritesCloseButtonWrapper.appendChild(closeDialog);
+    dialog.appendChild(favoritesCloseButtonWrapper);
 
     favoritesMenu.addEventListener("click", () => {
       dialog.showModal();
@@ -118,5 +155,5 @@ const BookFeatures = (() => {
     }
   }
 
-  return { favorites };
+  return { favorites, bookReadStatus };
 })();
