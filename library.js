@@ -55,6 +55,7 @@ const Addingbook = (() => {
       const favorite = document.createElement("img");
       const readStatusDiv = document.createElement("div");
       const bookReadCheckbox = document.createElement("img");
+      const deleteBookButton = document.createElement("img");
 
       bookWrapper.classList.add("book");
       bookWrapper.id = index;
@@ -63,6 +64,7 @@ const Addingbook = (() => {
       bookBlurBackground.classList.add("book-blur-background");
       favorite.classList.add("favoriteIcon");
       bookReadCheckbox.classList.add("checkbox");
+      deleteBookButton.classList.add("delete-book");
       /* authorDiv.textContent = `Author: ${book.author}`;
     numberPagesDiv.textContent = `Number of Pages: ${book.pages}`; */
       titleDiv.textContent = book.title;
@@ -74,11 +76,13 @@ const Addingbook = (() => {
       bookWrapper.appendChild(favorite);
       bookWrapper.appendChild(readStatusDiv);
       bookWrapper.appendChild(bookReadCheckbox);
+      bookWrapper.appendChild(deleteBookButton);
 
       booksWrapper.appendChild(bookWrapper);
 
       BookFeatures.favorites(book, favorite, bookWrapper);
       BookFeatures.bookReadStatus(book, readStatusDiv, bookReadCheckbox);
+      BookFeatures.deleteBook(book, booksWrapper, bookWrapper, deleteBookButton, library); //prettier-ignore
     });
   }
 
@@ -86,6 +90,24 @@ const Addingbook = (() => {
 })();
 
 const BookFeatures = (() => {
+  function deleteBook(
+    book,
+    booksWrapper,
+    bookWrapper,
+    deleteBookButton,
+    library
+  ) {
+    deleteBookButton.src = "./images/delete.png";
+
+    deleteBookButton.addEventListener("click", (event) => {
+      booksWrapper.removeChild(bookWrapper);
+      const bookId = event.target.id;
+      library.splice(bookId, 1);
+      book.switchFavoriteImg();
+      Addingbook.addBooktoHtml();
+    });
+  }
+
   function bookReadStatus(book, readStatusDiv, bookReadCheckbox) {
     if (book.readStatus == false) {
       readStatusDiv.textContent = "Mark as Read";
@@ -160,5 +182,5 @@ const BookFeatures = (() => {
     }
   }
 
-  return { favorites, bookReadStatus };
+  return { favorites, bookReadStatus, deleteBook };
 })();

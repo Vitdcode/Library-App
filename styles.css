@@ -372,13 +372,20 @@ dialog[open] {
 }
 
 .favoriteIcon {
-  height: 64px;
-  width: 64px;
+  height: 52px;
+  width: 52px;
   left: 5%;
-  top: 0;
+  top: 1%;
   position: absolute;
   opacity: 0.9;
   z-index: 3;
+  padding: 7px;
+}
+
+.favoriteIcon:hover {
+  background-color: rgb(245, 222, 179, 0.7);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
 }
 
 .book p {
@@ -457,4 +464,43 @@ dialog[open] {
   bottom: 4%;
   right: 13%;
   z-index: 5;
+}
+
+.delete-book {
+  position: absolute;
+  top: 1%;
+  right: 3%;
+  height: 54px;
+  width: 54px;
+  z-index: 6;
+  padding: 7px;
+}
+
+.delete-book:hover {
+  background-color: rgb(245, 222, 179, 0.7);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: rgb(245, 222, 179) #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+  width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(245, 222, 179);
+  border-radius: 10px;
+  border: 3px solid #ffffff;
 }
