@@ -18,6 +18,29 @@ body {
   padding: 0;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: rgb(245, 222, 179) #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+  width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(245, 222, 179);
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+
 .book-entry-and-books-wrapper {
   position: relative;
   display: grid;
@@ -225,19 +248,19 @@ label {
   backdrop-filter: blur(5px);
 }
 
-.dialog-wrapper > .book {
+.dialog-wrapper-favorites > .book {
   height: 300px;
   width: 200px;
   box-shadow: 2px 1px 15px 2px rgba(22, 22, 22, 0.75);
   margin-top: 10px;
 }
 
-.dialog-wrapper > .book > .favoriteIcon {
+.dialog-wrapper-favorites > .book > .favoriteIcon {
   height: 32px;
   width: 32px;
 }
 
-.dialog-wrapper > .book:hover {
+.dialog-wrapper-favorites > .book:hover {
   outline: 2px solid rgb(245, 222, 179);
 }
 
@@ -255,7 +278,7 @@ label {
   text-decoration: underline;
 }
 
-.dialog-wrapper {
+.dialog-wrapper-favorites {
   display: grid;
   grid-template-columns: repeat(auto-fit, 210px);
   grid-auto-rows: 320px;
@@ -487,25 +510,104 @@ dialog[open] {
   backdrop-filter: blur(10px);
 }
 
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-  scrollbar-width: auto;
-  scrollbar-color: rgb(245, 222, 179) #ffffff;
+/* Dialog Book Display */
+
+.book-display-dialog {
+  background-color: rgba(129, 129, 129, 0.7);
 }
 
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 5px;
+.dialog-wrapper-book-display {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+  height: 80%;
 }
 
-*::-webkit-scrollbar-track {
-  background: #ffffff;
-  width: 5px;
+.book-display-close-button-wrapper > button {
+  position: absolute;
+  margin-top: 40px;
+  height: 70px;
+  width: 220px;
+  border-radius: 13px;
+  border: none;
+  background-color: rgb(104, 177, 167);
+  color: rgb(245, 222, 179);
+  font-size: 1rem;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
 }
 
-*::-webkit-scrollbar-thumb {
+.book-display-close-button-wrapper > button:hover {
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.book-display-close-button-wrapper > button:active {
+  background-color: rgb(132, 180, 174);
+}
+
+.book-display-close-button-wrapper > button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 35%;
+  top: 40px;
+  width: 30%;
+  height: 2px;
   background-color: rgb(245, 222, 179);
-  border-radius: 10px;
-  border: 3px solid #ffffff;
+  opacity: 0;
+  transition: opacity 300ms, transform 200ms;
+  opacity: 1;
+  transform: scale(0);
+  transform-origin: center;
+}
+
+.book-display-close-button-wrapper > button:hover::after {
+  transform: scale(1);
+}
+
+.book-display-close-button-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.book-display-information {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  width: 50%;
+  background-color: rgb(245, 222, 179, 0.5);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.book-display-information p:nth-child(1) {
+  padding: 30px;
+  text-align: center;
+  overflow: hidden;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.book-display-information p:nth-child(2) {
+  padding: 30px;
+  margin-block: 20px;
+  margin-inline: 30px;
+  overflow: hidden;
+  font-size: 1.3rem;
+}
+
+.book-display-information p:nth-child(3) {
+  padding: 30px;
+  margin-inline: 30px;
+  overflow: hidden;
+  font-size: 1.3rem;
+}
+.book-display-information p:nth-child(4) {
+  padding: 30px;
+  margin-block: 40px;
+  margin-inline: 30px;
+  text-wrap: pretty;
+  overflow: auto;
 }
