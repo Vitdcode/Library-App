@@ -115,6 +115,7 @@ The book emphasizes the role of technology in advancing our knowledge of the cos
 The narrative also addresses the big questions about the universe's fate, exploring theories such as the Big Freeze, Big Crunch, and Big Rip. Time travel is examined through theoretical physics, discussing wormholes, Einstein's theory of relativity, and the challenges of faster-than-light travel. The book combines scientific rigor with engaging storytelling, making complex topics accessible to all readers.
 
 "Exploring the Cosmos" concludes with a look at the future of space exploration, discussing upcoming missions, the potential for human colonization of other planets, and the quest to understand the origins of life. The book leaves readers with a sense of wonder and excitement about the endless possibilities that lie ahead, inspiring a renewed curiosity about the universe and our place within it.`;
+
   function bookDisplay(
     bookWrapper,
     bookBlurBackground,
@@ -246,5 +247,10 @@ The narrative also addresses the big questions about the universe's fate, explor
     }
   }
 
-  return { favorites, bookReadStatus, deleteBook, bookDisplay };
+  return {
+    favorites,
+    bookReadStatus,
+    deleteBook,
+    bookDisplay,
+  };
 })();

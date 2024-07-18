@@ -296,7 +296,7 @@ dialog {
   margin-block: auto;
   height: 85%;
   width: 90%;
-  background-color: rgb(45, 40, 113, 0.7);
+  background-color: rgba(145, 145, 145, 0.7);
   box-shadow: 0px 7px 15px 6px rgba(0, 0, 0, 0.75);
   border: none;
   backdrop-filter: blur(10px);
@@ -513,7 +513,7 @@ dialog[open] {
 /* Dialog Book Display */
 
 .book-display-dialog {
-  background-color: rgba(129, 129, 129, 0.7);
+  background-color: rgba(145, 145, 145, 0.7);
 }
 
 .dialog-wrapper-book-display {
@@ -582,8 +582,13 @@ dialog[open] {
   backdrop-filter: blur(10px);
 }
 
+.book-display-information p {
+  color: rgb(51, 51, 51);
+}
+
 .book-display-information p:nth-child(1) {
   padding: 30px;
+  margin-bottom: 20px;
   text-align: center;
   overflow: hidden;
   font-size: 2rem;
@@ -592,7 +597,7 @@ dialog[open] {
 
 .book-display-information p:nth-child(2) {
   padding: 30px;
-  margin-block: 20px;
+  /*  margin-block: 20px; */
   margin-inline: 30px;
   overflow: hidden;
   font-size: 1.3rem;
