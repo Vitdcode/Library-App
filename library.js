@@ -7,20 +7,22 @@ const Addingbook = (() => {
 
   const library = [];
 
-  Book.prototype.switchFavoriteImg = function () {
-    this.favorite = this.favorite === false ? true : false;
-  };
+  class Book {
+    constructor(author, title, pages, favorite, readStatus) {
+      this.author = author;
+      this.title = title;
+      this.pages = pages;
+      this.favorite = favorite;
+      this.readStatus = readStatus;
+    }
 
-  Book.prototype.switchReadStatus = function () {
-    this.readStatus = this.readStatus === false ? true : false;
-  };
+    switchFavoriteImg() {
+      this.favorite = this.favorite === false ? true : false;
+    }
 
-  function Book(author, title, pages, favorite, readStatus) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.favorite = favorite;
-    this.readStatus = readStatus;
+    switchReadStatus() {
+      this.readStatus = this.readStatus === false ? true : false;
+    }
   }
 
   bookForm.addEventListener("submit", function (event) {
@@ -44,8 +46,10 @@ const Addingbook = (() => {
   }
 
   function addBooktoHtml() {
+    // remove all books from the DOM
     document.querySelectorAll(".book").forEach((e) => e.remove());
 
+    // render each book in library
     library.forEach((book, index) => {
       const bookWrapper = document.createElement("div");
       const authorDiv = document.createElement("p");
@@ -78,6 +82,7 @@ const Addingbook = (() => {
 
       booksWrapper.appendChild(bookWrapper);
 
+      //call all Book Feature functions with the needed elements
       BookFeatures.favorites(book, favorite, bookWrapper);
       BookFeatures.bookReadStatus(book, readStatusDiv, bookReadCheckbox);
       BookFeatures.deleteBook(booksWrapper, bookWrapper, deleteBookButton, library); //prettier-ignore
@@ -95,6 +100,7 @@ const Addingbook = (() => {
 })();
 
 const BookFeatures = (() => {
+  //declaring "global" variables inside of BookFeatures so they are available for all functions inside BookFeatures
   const closeDialogBookDisplayButtonWrapper = document.createElement("div");
   const closeDialogBookDisplayButton = document.createElement("button");
   const bookInfoWrapper = document.createElement("div");
