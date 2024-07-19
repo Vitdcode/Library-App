@@ -8,7 +8,7 @@ const Addingbook = (() => {
   const library = [];
 
   class Book {
-    constructor(author, title, pages, favorite, readStatus) {
+    constructor(author, title, pages, favorite = false, readStatus = false) {
       this.author = author;
       this.title = title;
       this.pages = pages;
@@ -17,11 +17,47 @@ const Addingbook = (() => {
     }
 
     switchFavoriteImg() {
-      this.favorite = this.favorite === false ? true : false;
+      this.favorite = !this.favorite;
     }
 
     switchReadStatus() {
-      this.readStatus = this.readStatus === false ? true : false;
+      this.readStatus = !this.readStatus;
+    }
+
+    set author(newAuthor) {
+      if (newAuthor != "") {
+        this._author = newAuthor;
+      } else {
+        alert("Author Field cannot be empty");
+      }
+    }
+
+    set title(newTitle) {
+      if (newTitle != "") {
+        this._title = newTitle;
+      } else {
+        alert("Title field cannot be empty");
+      }
+    }
+
+    set pages(newPages) {
+      if (newPages != "") {
+        this._pages = newPages;
+      } else {
+        alert("Number of Pages field cannot be empty");
+      }
+    }
+
+    get author() {
+      return this._author;
+    }
+
+    get title() {
+      return this._title;
+    }
+
+    get pages() {
+      return this._pages;
     }
   }
 
@@ -31,18 +67,15 @@ const Addingbook = (() => {
   });
 
   function addBookToLibrary() {
-    const book = new Book(
-      author.value,
-      title.value,
-      numberPages.value,
-      false,
-      false
-    );
-    library.push(book);
-    addBooktoHtml();
-    author.value = "";
-    /*  title.value = ""; */
-    numberPages.value = "";
+    const book = new Book(author.value, title.value, numberPages.value ); //prettier-ignore
+
+    if (author.value != "" && title.value != "" && numberPages.value != "") {
+      library.push(book);
+      addBooktoHtml();
+      author.value = "";
+      title.value = "";
+      numberPages.value = "";
+    }
   }
 
   function addBooktoHtml() {
@@ -71,6 +104,7 @@ const Addingbook = (() => {
       deleteBookButton.classList.add("delete-book");
       authorDiv.textContent = `Author: ${book.author}`;
       numberPagesDiv.textContent = `Number of Pages: ${book.pages}`;
+
       titleDiv.textContent = book.title;
 
       bookWrapper.appendChild(bookBlurBackground);

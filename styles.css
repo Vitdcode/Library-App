@@ -117,6 +117,18 @@ input:focus {
   border: 2px solid white;
 }
 
+/* hiding the up and down arrows to enter a number in number of pages input field */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
 .author-wrapper,
 .title-wrapper,
 .number-pages-wrapper {
@@ -245,7 +257,7 @@ label {
 /* dialog menu favorites */
 
 ::backdrop {
-  backdrop-filter: blur(5px);
+  backdrop-filter: brightness(40%);
 }
 
 .dialog-wrapper-favorites > .book {
@@ -286,7 +298,8 @@ label {
   justify-content: center;
   gap: 60px;
   margin-block: 10px;
-  overflow: auto;
+  overflow-y: auto;
+  transform: translateZ(0);
 }
 
 dialog {
@@ -296,10 +309,10 @@ dialog {
   margin-block: auto;
   height: 85%;
   width: 90%;
-  background-color: rgba(145, 145, 145, 0.7);
+  background-color: rgba(194, 193, 193, 0.9);
+
   box-shadow: 0px 7px 15px 6px rgba(0, 0, 0, 0.75);
   border: none;
-  backdrop-filter: blur(10px);
 }
 
 dialog[open] {
@@ -512,10 +525,6 @@ dialog[open] {
 
 /* Dialog Book Display */
 
-.book-display-dialog {
-  background-color: rgba(145, 145, 145, 0.7);
-}
-
 .dialog-wrapper-book-display {
   display: flex;
   justify-content: space-around;
@@ -597,7 +606,6 @@ dialog[open] {
 
 .book-display-information p:nth-child(2) {
   padding: 30px;
-  /*  margin-block: 20px; */
   margin-inline: 30px;
   overflow: hidden;
   font-size: 1.3rem;
@@ -614,5 +622,6 @@ dialog[open] {
   margin-block: 40px;
   margin-inline: 30px;
   text-wrap: pretty;
-  overflow: auto;
+  overflow-y: auto;
+  transform: translateZ(0);
 }
